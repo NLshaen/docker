@@ -1,0 +1,31 @@
+version: '2'
+
+volumes:
+  glpi-db:
+  glpi-files:
+  glpi-plugins:
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: glpi
+      MYSQL_PASSWORD: Very1nsecurepwd
+      MYSQL_ROOT_PASSWORD: Very1nsecurepwd
+      MYSQL_USER: glpi
+    volumes:
+    - glpi-db:/var/lib/mysql
+    ports:
+    - 3306:3306/tcp
+  glpi:
+    #build: ./
+    image: lpcbc/glpi:9.2.3
+    restart: always
+    volumes:
+    - glpi-files:/var/www/html/files
+    - glpi-plugins:/var/www/html/plugins
+    links:
+    - db:mysql
+    ports:
+    - 80:80/tcp

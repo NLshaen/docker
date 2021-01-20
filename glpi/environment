@@ -1,0 +1,4 @@
+https_proxy="http://domain\username:password@ip:3128/"
+http_proxy="http://domain\username:password@ip:3128/"
+ftp_proxy="http://domain\username:password@ip:3128/"
+use_proxy=on
